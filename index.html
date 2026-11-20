@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GRM ESPORT</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#090b10;color:white;font-family:Arial,sans-serif}
+header{background:#171b25;padding:20px;display:flex;justify-content:space-between;border-bottom:1px solid #444}
+.logo{font-size:25px;font-weight:bold;color:#ff3333}
+.logo span{color:white}
+.tag{font-size:11px;color:#aaa;margin-top:5px}
+main{max-width:650px;margin:auto;padding:16px}
+.hero{background:linear-gradient(135deg,#551313,#171b25);padding:24px;border:1px solid #733;border-radius:15px;margin:15px 0}
+.hero h1{font-size:30px}
+.hero p{color:#ccc;line-height:1.5}
+button{cursor:pointer}
+.btn{background:#ed3030;color:white;border:0;border-radius:8px;padding:13px 18px;font-weight:bold}
+h2{font-size:21px;margin-top:25px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat,.match{background:#171b25;border:1px solid #303644;border-radius:12px;padding:15px}
+.stat{text-align:center}
+.stat strong{display:block;color:#ff4444;font-size:21px}
+.stat small{color:#aaa}
+.match{margin:12px 0}
+.match h3{margin:12px 0}
+.details{display:flex;justify-content:space-between;color:#aaa;font-size:12px;margin:15px 0}
+.mode{color:#ff6666;font-weight:bold;font-size:12px}
+.join{width:100%}
+.page{display:none}
+.page.active{display:block}
+.tabs{display:flex;gap:7px;overflow:auto;margin:15px 0}
+.tab{background:#252b38;color:white;border:0;border-radius:7px;padding:11px}
+.tab.active{background:#e83232}
+nav{position:sticky;bottom:0;background:#171b25;display:flex;justify-content:space-around;padding:10px 2px;border-top:1px solid #444}
+nav button{font-size:12px}
+footer{text-align:center;color:#888;padding:25px;font-size:12px}
+.modal{display:none;position:fixed;inset:0;background:#000c;align-items:center;justify-content:center;padding:20px}
+.modalbox{background:#191e29;padding:22px;border-radius:14px;width:100%;max-width:400px}
+input{width:100%;padding:13px;margin:9px 0 15px;background:#10141d;border:1px solid #555;border-radius:7px;color:white}
+.close{float:right;background:none;border:0;color:white;font-size:24px}
+</style>
+</head>
+<body>
+
+<header>
+<div>
+<div class="logo">GRM <span>ESPORT</span></div>
+<div class="tag">FREE FIRE INDIA TOURNAMENTS</div>
+</div>
+<div>🎮</div>
+</header>
+
+<main>
+
+<section id="home" class="page active">
+<div class="hero">
+<p style="color:#ff7777">WELCOME TO GRM ESPORT</p>
+<h1>PLAY. COMPETE. WIN.</h1>
+<p>Join exciting Free Fire tournaments and show your gaming skills!</p>
+<button class="btn" onclick="showPage('tournaments')">Explore Tournaments</button>
+</div>
+
+<div class="stats">
+<div class="stat"><strong>FF</strong><small>GAME</small></div>
+<div class="stat"><strong>3</strong><small>GAME MODES</small></div>
+<div class="stat"><strong>24/7</strong><small>COMMUNITY</small></div>
+</div>
+
+<h2>🔥 Featured Tournament</h2>
+<div class="match">
+<span class="mode">FREE FIRE INDIA</span>
+<h3>GRM ESPORT DUO BATTLE</h3>
+<p style="color:#aaa">Team up with your partner and compete!</p>
+<div class="details"><span>Mode: Duo</span><span>Prize: TBA</span></div>
+<button class="btn join" onclick="showPage('tournaments')">View Tournament</button>
+</div>
+</section>
+
+<section id="tournaments" class="page">
+<h2>🏆 Tournaments</h2>
+<p style="color:#aaa">Choose your game mode.</p>
+<div class="tabs">
+<button class="tab active" onclick="filterMode('All',this)">All</button>
+<button class="tab" onclick="filterMode('Solo',this)">Solo</button>
+<button class="tab" onclick="filterMode('Duo',this)">Duo</button>
+<button class="tab" onclick="filterMode('Squad',this)">Squad</button>
+</div>
+
+<div id="matches">
+<div class="match" data-mode="Solo">
+<span class="mode">SOLO MATCH</span>
+<h3>GRM Solo Challenge</h3>
+<div class="details"><span>Mode: Solo</span><span>Prize: TBA</span></div>
+<button class="btn join" onclick="openJoin('GRM Solo Challenge')">Register Interest</button>
+</div>
+
+<div class="match" data-mode="Duo">
+<span class="mode">DUO MATCH</span>
+<h3>GRM Duo Battle</h3>
+<div class="details"><span>Mode: Duo</span><span>Prize: TBA</span></div>
+<button class="btn join" onclick="openJoin('GRM Duo Battle')">Register Interest</button>
+</div>
+
+<div class="match" data-mode="Squad">
+<span class="mode">SQUAD MATCH</span>
+<h3>GRM Squad War</h3>
+<div class="details"><span>Mode: Squad</span><span>Prize: TBA</span></div>
+<button class="btn join" onclick="openJoin('GRM Squad War')">Register Interest</button>
+</div>
+</div>
+</section>
+
+<section id="winners" class="page">
+<h2>🥇 Winners & Leaderboard</h2>
+<div class="match">
+<h3>Winners coming soon!</h3>
+<p style="color:#aaa">Verified tournament results will be displayed here.</p>
+</div>
+</section>
+
+<section id="profile" class="page">
+<h2>👤 Player Profile</h2>
+<div class="match">
+<h3>Welcome, Player!</h3>
+<p style="color:#aaa">Register your interest in GRM ESPORT tournaments.</p>
+<button class="btn" onclick="openJoin('Player Registration')">Register</button>
+</div>
+<div class="match">
+<h3>Need help?</h3>
+<p style="color:#aaa">Join our WhatsApp channel.</p>
+<button class="btn" onclick="window.open('https://whatsapp.com/channel/0029VbDa1iqEAKWIioJgfR3y','_blank')">Open WhatsApp</button>
+</div>
+</section>
+
+</main>
+
+<nav>
+<button class="tab active" onclick="showPage('home')">⌂ Home</button>
+<button class="tab" onclick="showPage('tournaments')">🏆 Matches</button>
+<button class="tab" onclick="showPage('winners')">🥇 Winners</button>
+<button class="tab" onclick="showPage('profile')">👤 Profile</button>
+</nav>
+
+<div class="modal" id="joinModal">
+<div class="modalbox">
+<button class="close" onclick="closeJoin()">×</button>
+<h2>Register Interest</h2>
+<p id="selectedMatch" style="color:#ff7777"></p>
+<label>Player Name</label>
+<input id="playerName" placeholder="Enter your name">
+<label>Free Fire UID</label>
+<input id="playerUID" placeholder="Enter your Free Fire UID">
+<button class="btn join" onclick="submitInterest()">Submit</button>
+<p id="message" style="color:#9ce5a8"></p>
+</div>
+</div>
+
+<footer>© 2026 GRM ESPORT | Play Fair. Win Big.</footer>
+
+<script>
+function showPage(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+window.scrollTo(0,0);
+}
+
+function filterMode(mode,button){
+document.querySelectorAll('#matches .match').forEach(m=>{
+m.style.display=(mode==='All'||m.dataset.mode===mode)?'block':'none';
+});
+document.querySelectorAll('.tabs .tab').forEach(b=>b.classList.remove('active'));
+button.classList.add('active');
+}
+
+function openJoin(name){
+document.getElementById('selectedMatch').textContent=name;
+document.getElementById('joinModal').style.display='flex';
+document.getElementById('message').textContent='';
+}
+
+function closeJoin(){
+document.getElementById('joinModal').style.display='none';
+}
+
+function submitInterest(){
+let name=document.getElementById('playerName').value.trim();
+let uid=document.getElementById('playerUID').value.trim();
+if(!name||!uid){
+document.getElementById('message').textContent='Please enter your name and UID.';
+return;
+}
+document.getElementById('message').textContent='Demo only: registration is not connected yet.';
+}
+</script>
+
+</body>
+  </html>
+    
